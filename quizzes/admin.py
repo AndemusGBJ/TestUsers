@@ -30,5 +30,5 @@ class ReponseAdmin(ImportExportModelAdmin):
 
 @admin.register(ValidationEpreuve)
 class ValidationEpreuveAdmin(ImportExportModelAdmin):
-    pass
+    list_display = ('epreuve', 'user', 'validation')
 

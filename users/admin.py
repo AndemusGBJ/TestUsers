@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from import_export.admin import ImportExportModelAdmin
 
-from .models import User, Etudiant
+from .models import User
 
 
 class AddUserForm(forms.ModelForm):
@@ -87,4 +87,4 @@ class UserAdmin(BaseUserAdmin, ImportExportModelAdmin):
 
 admin.site.register(User, UserAdmin)
 
-admin.site.register(Etudiant)
+
