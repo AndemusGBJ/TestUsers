@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
 
+from quizzes.models.epreuve import Epreuve
 from quizzes.models.etudiant import Etudiant
-from quizzes.views import accueil, etudiant, epreuve
+from quizzes.views import accueil, etudiant, epreuve, validationEpreuve
 
 from django.urls import path
 
@@ -31,5 +32,12 @@ urlpatterns = [
     path('etudiants/modifier/<int:pk>/', etudiant.UpdateEtudiant.as_view(), name="modifier"),
     path('etudiants/<int:pk>/',
          login_required(DetailView.as_view(model=Etudiant, template_name="u_quizzes/etudiants/details-etudiant.html")), name='details'),
+
+    path('questions/', validationEpreuve.list_questions, name="questions"),
+    path('reponses/enregistrer/', validationEpreuve.CreateReponse.as_view(), name="enregistrer"),
+    path('epreuves/', validationEpreuve.list_epreuves, name="epreuves"),
+    path('mes_epreuves/', validationEpreuve.list_validations, name="mes_epreuves"),
+    path('epreuves/<int:pk>/',
+         login_required(DetailView.as_view(model=Epreuve, template_name="u_quizzes/validationEpreuve/quiz-intro.html")), name='intro'),
 
 ]

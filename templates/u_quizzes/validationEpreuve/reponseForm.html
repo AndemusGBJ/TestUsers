@@ -6,7 +6,7 @@
         	<div class="banner-img"><img src="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/images/banner/quiz.jpg" alt=""></div>
             <div class="page-title">	
 	            <div class="container">
-                    <h1>Quiz Result</h1>
+                    <h1>Epreuve</h1>
                 </div>
             </div>
         </section>
@@ -21,12 +21,12 @@
         <section class="quiz-view">
         	<div class="container">
                 <div class="quiz-title">
-                    <h2>Algorithmique</h2>
-                    <p>Contrôl d'Acquis théorique</p>
+                    <h2>TD Algorithmique</h2>
+                    <p>Contrôl d'acquis théorique</p>
                 </div>
                 <div class="row">
                 	<div class="col-sm-4 col-md-3">
-                    	<div id="countdown_stop"></div>
+                    	<div id="countdown"></div>
                         <div class="qustion-list">
                         	<div class="qustion-slide fill">
                             	<div class="qustion-number">Question 1</div>
@@ -36,7 +36,7 @@
                             	<div class="qustion-number">Question 2</div>
                             	<span>2</span>
                             </div>
-                            <div class="qustion-slide fill">
+                            <div class="qustion-slide">
                             	<div class="qustion-number">Question 3</div>
                             	<span>2</span>
                             </div>
@@ -44,50 +44,45 @@
                             	<div class="qustion-number">Question 4</div>
                             	<span>2</span>
                             </div>
-                            <div class="qustion-slide fill">
+                            <div class="qustion-slide active">
                             	<div class="qustion-number">Question 5</div>
                             	<span>2</span>
                             </div>
-                           
+                            
                         </div>
                     </div>
+                    {% for question in list_questions %}
                     <div class="col-sm-8 col-md-9">
-                    	<div class="quiz-result">
-                        	<h3>Résultats</h3>
-                            <div class="result-info">
-                            	<div class="info-slide">
-                                	<p>Votre note<span>7.2</span></p>
+                    	<div class="qustion-main">
+                            <div class="qustion-box">
+                                <div class="qustion">{{ question }}</div>
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    <div class="ans">
+                                	<div class="mb-3">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Entrez votre réponse ici</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                      </div>
+
                                 </div>
-                                <div class="info-slide">
-                                	<p>Max<span>10</span></p>
+                                <div class="save-btn">
+                                	<a href="#" class="btn2">Enregistrer</a>
                                 </div>
-                                <div class="info-slide">
-                                	<p>Statut<span style="color: darkgreen;">Réussite</span></p>
+                                </form>
+
+                                <div class="btn-slide">
+                                	<a href="#" class="btn"><i class="fa fa-angle-left"></i></a>
+                                    <a href="#" class="btn"><i class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>
-                            <div class="leaderboard">
-                            	<h3>Récapitulation</h3>
-                                <div class="qustion-review">
-                                	<p><a href="#">Réponse 1</a><span>1</span></p>
-                                </div>
-                                <div class="qustion-review">
-                                	<p><a href="#">Réponse 2</a><span>1.8</span></p>
-                                </div>
-                                <div class="qustion-review">
-                                	<p><a href="#">Réponse 3</a><span>1.3</span></p>
-                                </div>
-                                <div class="qustion-review">
-                                	<p><a href="#">Réponse 4</a><span>2</span></p>
-                                </div>
-                                <div class="qustion-review">
-                                	<p><a href="#">Réponse 5</a><span>1.1</span></p>
-                                </div>
-                                
+                            <div class="submit-quiz">
+                            	<a href="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/quiz-result.html" class="btn">Envoyez</a>
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
 
-       {% endblock %}
+{% endblock %}
