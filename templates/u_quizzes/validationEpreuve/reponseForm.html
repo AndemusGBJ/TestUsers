@@ -55,18 +55,23 @@
                     <div class="col-sm-8 col-md-9">
                     	<div class="qustion-main">
                             <div class="qustion-box">
-                                <div class="qustion">{{ question }}</div>
+                                <div class="qustion">{{ question.contenu }}</div>
                                 <form action="" method="post">
                                     {% csrf_token %}
+
                                     <div class="ans">
                                 	<div class="mb-3">
+
                                         <label for="exampleFormControlTextarea1" class="form-label">Entrez votre réponse ici</label>
+
+
+
                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                       </div>
 
                                 </div>
                                 <div class="save-btn">
-                                	<a href="#" class="btn2">Enregistrer</a>
+                                    <button type="submit" class="btn2">Enregistre cette réponse</button>
                                 </div>
                                 </form>
 
@@ -76,11 +81,12 @@
                                 </div>
                             </div>
                             <div class="submit-quiz">
-                            	<a href="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/quiz-result.html" class="btn">Envoyez</a>
+                            	<a href="#" class="btn">Envoyez</a>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
+
                 </div>
             </div>
         </section>

@@ -2,107 +2,79 @@
 
 {% block content %}
 
-        <section class="banner inner-page">
-        	<div class="banner-img"><img src="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/images/banner/event.jpg" alt=""></div>
-            <div class="page-title">	
-	            <div class="container">
-                    <h1>Event</h1>
-                </div>
-            </div>
-        </section>
-        <section class="breadcrumb ">
-        	<div class="container">
-            	<ul>
-                	<li><a href="#">Accueil</a></li>
-                    <li><a href="#">Mes épreuves</a></li>
-                </ul>
-            </div>
-        </section>
-        <div class="event-page">
-        	<div class="container">
-            	<div class="section-title">
-                	<h2>Mes péreuves</h2>
-
-                </div>
-                <div class="row">
-
-                    {% for validation in list_validations %}
-
-                        {% if validation.user == user.id %}
-
-                            {% for epreuve in list_epreuves %}
-
-                                {% if epreuve.id == validation.epreuve %}
-
-                                    <div class="col-sm-6 col-md-4">
-                            <div class="event-box" style="padding-top: 20px;">
-
-                                <div class="event-name"><a href="#">{{ epreuve.titre }}</a></div>
-                                <div class="event-info"><i class="fa fa-clock-o"></i> {{ epreuve.dateCreation|date:'d-M-Y H:i'}}</div>
-                                <div class="event-info"><i class='fa fa-hourglass'></i>Durée : {{ epreuve.duree }} minutes</div>
-                                <div class="event-info"><i class='fa fa-calculator'></i></i>Pondération : {{ epreuve.ponderation }} pts</div>
-                                <p>{{ epreuve.description }}</p>
-                                <p>{{ user.get_full_name|default:'Guest' }}</p>
-                                <div class="more-btn">
-                                    <a href="{% url 'quizzes:intro' epreuve.id %}" class="btn">Afficher</a>
-                                </div>
-                            </div>
-                        </div>
-
-                                {% endif %}
-
-
-                            {% endfor %}
-
-
-
-
-                        {% endif %}
-
-
-
-                    {% endfor %}
-
-
-                    <div class="col-sm-6 col-md-4">
-                        <div class="event-box" style="padding-top: 20px;">
-                            
-                            <div class="event-name"><a href="#">Droit informatique</a></div>
-                            <div class="event-info"><i class="fa fa-clock-o"></i> 25 septembre 2021, 10:00</div>
-
-                            <div class="event-info"><i class='fa fa-hourglass'></i>Durée : 120 minutes</div>
-                            <div class="event-info"><i class='fa fa-calculator'></i></i>Pondération : 20 pts</div>
-                            <p>Travail dirigé</p>
-                            <div class="more-btn">
-                            	<a href="#" class="btn">Afficher</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="event-box" style="padding-top: 20px;">
-                            
-                            <div class="event-name"><a href="#">MRS</a></div>
-                            <div class="event-info"><i class="fa fa-clock-o"></i> 25 septembre 2021, 10:00</div>
-                            <div class="event-info"><i class='fa fa-hourglass'></i>Durée : 60 minutes</div>
-                            <div class="event-info"><i class='fa fa-calculator'></i></i>Pondération : 10 pts</div>
-                            <p>Interrogation</p>
-                            <div class="more-btn">
-                            	<a href="#" class="btn">Afficher</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pagination">
-                    <ul>
-                        <li class="next"><a href="#"><i class="fa fa-angle-left"></i><span>Next</span></a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li class="prev"><a href="#"><span>prev</span> <i class="fa fa-angle-right"></i></a></li>
-                    </ul>
-                </div>
+    <section class="banner inner-page">
+        <div class="banner-img"><img
+                src="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/images/banner/event.jpg" alt="">
+        </div>
+        <div class="page-title">
+            <div class="container">
+                <h1>Event</h1>
             </div>
         </div>
+    </section>
+    <section class="breadcrumb ">
+        <div class="container">
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Mes épreuves</a></li>
+            </ul>
+        </div>
+    </section>
+    <div class="event-page">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mes péreuves</h2>
+
+            </div>
+            <p>{{ user }}</p>
+            <div class="row">
+
+                {% for validation in list_validations %}
+
+                        {% for epreuve in list_epreuves %}
+
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="event-box" style="padding-top: 20px;">
+
+                                        <div class="event-name"><a href="#">{{ epreuve.titre }}</a></div>
+                                        <div class="event-info"><i
+                                                class="fa fa-clock-o"></i> {{ epreuve.dateCreation|date:'d-M-Y H:i' }}
+                                        </div>
+                                        <div class="event-info"><i class='fa fa-hourglass'></i>Durée
+                                            : {{ epreuve.duree }} minutes
+                                        </div>
+                                        <div class="event-info"><i class='fa fa-calculator'></i></i>Pondération
+                                            : {{ epreuve.ponderation }} pts
+                                        </div>
+                                        <p>{{ epreuve.description }}</p>
+                                        <p>Validation epreuve : {{ validation.epreuve }}</p>
+                                        <p>Validation user : {{ validation.user }}</p>
+                                        <p>Epreuve pk : {{ epreuve.pk }} </p>
+                                        <p>Epreuve id : {{ epreuve.id }} </p>
+                                        <div class="more-btn">
+                                            <a href="{% url 'quizzes:intro' epreuve.pk %}" class="btn">Afficher</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                        {% endfor %}
+
+                {% endfor %}
+
+            </div>
+            <div class="pagination">
+                <ul>
+                    <li class="next"><a href="#"><i class="fa fa-angle-left"></i><span>Next</span></a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li class="prev"><a href="#"><span>prev</span> <i class="fa fa-angle-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

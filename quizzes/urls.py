@@ -12,6 +12,7 @@ app_name = 'quizzes'
 urlpatterns = [
 
     #Url pour la page d'accueil
+    path('', accueil.index, name='accueil'),
     path('Accueil/', accueil.index, name='accueil'),
 
     #Urls pour les quizzes
@@ -35,7 +36,8 @@ urlpatterns = [
 
     path('questions/', validationEpreuve.list_questions, name="questions"),
     path('reponses/enregistrer/', validationEpreuve.CreateReponse.as_view(), name="enregistrer"),
-    path('epreuves/', validationEpreuve.list_epreuves, name="epreuves"),
+    path('question/repondre/', validationEpreuve.new_response, name="repondre"),
+    #path('epreuves/', validationEpreuve.list_epreuves, name="epreuves"),
     path('mes_epreuves/', validationEpreuve.list_validations, name="mes_epreuves"),
     path('epreuves/<int:pk>/',
          login_required(DetailView.as_view(model=Epreuve, template_name="u_quizzes/validationEpreuve/quiz-intro.html")), name='intro'),

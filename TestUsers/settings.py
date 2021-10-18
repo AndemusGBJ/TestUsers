@@ -134,4 +134,4 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = "quizzes:accueil"
+LOGIN_REDIRECT_URL = "quizzes:mes_epreuves"

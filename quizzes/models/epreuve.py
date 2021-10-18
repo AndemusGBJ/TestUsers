@@ -7,7 +7,7 @@ class Epreuve(models.Model):
     titre = models.CharField(max_length=50, verbose_name="Nom")
     description = models.TextField()
     ponderation = models.FloatField(verbose_name="Maxima")
-    dateCreation = models.DateField(auto_now_add=True, editable=False, blank=True, verbose_name='Créée le')
+    dateCreation = models.DateTimeField( verbose_name='Créée le')
     duree = models.DurationField(default=timedelta(hours=2), verbose_name="Durée")
 
 

@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,10 +11,10 @@
     <!-- Mobile Specific Metas -->
 
     <!-- Title -->
-    <title>Academy</title>
+    <title>U-Quizzes</title>
 
     <!-- favicon icon -->
-    <link rel="shortcut icon" href="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/images/Favicon.ico">
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}">
 
     <!-- CSS Stylesheet -->
     <link href="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/css/bootstrap.css" rel="stylesheet">
@@ -46,9 +48,20 @@
             <div class="contact-no"><a href="#"><i class="fa fa-phone"></i>+299 97 39 82</a></div>
             <div class="contact-no"><a href="#"><i class="fa fa-globe"></i>uquizzes.com</a></div>
             <div class="quck-right">
-                <div class="right-link"><a
-                        href="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/login-register.html"><i
+                {% if user %}
+                    <div class="right-link">
+                        <a href="#"> <i class="fa  fa-user"></i>{{ user.get_full_name }}</a>
+                        <a href="{% url 'logout' %}"> >> Deconnexion</a>
+                    </div>
+
+                {% else %}
+
+                    <div class="right-link"><a
+                        href="{% url 'login' %}"><i
                         class="fa  fa-user"></i>Login \ Register</a></div>
+
+                {% endif %}
+
             </div>
         </div>
     </div>
@@ -57,9 +70,9 @@
             <nav id="nav-main">
                 <div class="navbar navbar-inverse">
                     <div class="navbar-header">
-                        <a href="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/index.html"
+                        <a href="{% url 'quizzes:mes_epreuves' %}"
                            class="navbar-brand"><img
-                                src="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/images/logo.png"
+                                src="{% static 'assets/img/logo.png' %}"
                                 alt=""></a>
                         <button type="button" class="navbar-toggle" data-toggle="collapse"
                                 data-target=".navbar-collapse">
@@ -74,11 +87,11 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="sub-menu">
-                                <a href="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/index.html">Home </a>
+                            <li class=" active sub-menu">
+                                <a href="#">Mes Epreuves </a>
                             </li>
-                            <li class="active mega-menu sub-menu">
-                                <a href="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/courses-list.html">Courses</a>
+                            <li class="mega-menu sub-menu">
+                                <a href="#">Tableau de bord</a>
                             </li>
                             <li class="sub-menu mega-menu">
                                 <a href="#">Pages </a>
@@ -86,17 +99,10 @@
                             <li class="sub-menu">
                                 <a href="#">Features</a>
                             </li>
-                            <li><a href="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/about-us.html">About Us</a>
-                            </li>
-                            <li class="sub-menu">
-                                <a href="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/event.html">Event</a>
-                            </li>
-                            <li class="sub-menu mega-menu">
-                                <a href="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/forums.html">Forums</a>
+                            <li><a href="#">About Us</a>
                             </li>
                             <li>
-                                <a href="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/contact-us.html">Contact
-                                    Us </a></li>
+                                <a href="#">Contact Us </a></li>
                         </ul>
                     </div>
                 </div>
