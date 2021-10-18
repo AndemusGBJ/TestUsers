@@ -21,7 +21,8 @@
         </div>
     </section>
     <div class="event-page">
-        <div class="container">
+        {% for validation in list_validations %}
+            <div class="container">
             <div class="section-title">
                 <h2>Mes péreuves</h2>
 
@@ -29,51 +30,77 @@
             <p>{{ user }}</p>
             <div class="row">
 
-                {% for validation in list_validations %}
 
-                        {% for epreuve in list_epreuves %}
+                {% for epreuve in list_epreuves %}
 
-                                <div class="col-sm-6 col-md-4">
-                                    <div class="event-box" style="padding-top: 20px;">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="event-box" style="padding-top: 20px;">
 
-                                        <div class="event-name"><a href="#">{{ epreuve.titre }}</a></div>
-                                        <div class="event-info"><i
-                                                class="fa fa-clock-o"></i> {{ epreuve.dateCreation|date:'d-M-Y H:i' }}
-                                        </div>
-                                        <div class="event-info"><i class='fa fa-hourglass'></i>Durée
-                                            : {{ epreuve.duree }} minutes
-                                        </div>
-                                        <div class="event-info"><i class='fa fa-calculator'></i></i>Pondération
-                                            : {{ epreuve.ponderation }} pts
-                                        </div>
-                                        <p>{{ epreuve.description }}</p>
-                                        <p>Validation epreuve : {{ validation.epreuve }}</p>
-                                        <p>Validation user : {{ validation.user }}</p>
-                                        <p>Epreuve pk : {{ epreuve.pk }} </p>
-                                        <p>Epreuve id : {{ epreuve.id }} </p>
-                                        <div class="more-btn">
-                                            <a href="{% url 'quizzes:intro' epreuve.pk %}" class="btn">Afficher</a>
-                                        </div>
-                                    </div>
-                                </div>
-
+                            <div class="event-name"><a href="#">{{ epreuve.titre }}</a></div>
+                            <div class="event-info"><i
+                                    class="fa fa-clock-o"></i> {{ epreuve.dateCreation|date:'d-M-Y H:i' }}
+                            </div>
+                            <div class="event-info"><i class='fa fa-hourglass'></i>Durée
+                                : {{ epreuve.duree }} minutes
+                            </div>
+                            <div class="event-info"><i class='fa fa-calculator'></i></i>Pondération
+                                : {{ epreuve.ponderation }} pts
+                            </div>
+                            <p>{{ epreuve.description }}</p>
+                            <p>Validation epreuve : {{ validation.epreuve }}</p>
+                            <p>Validation user : {{ validation.user }}</p>
+                            <p>Epreuve pk : {{ epreuve.pk }} </p>
+                            <p>Epreuve id : {{ epreuve.id }} </p>
+                            <div class="more-btn">
+                                <a href="{% url 'quizzes:intro' epreuve.pk %}" class="btn">Afficher</a>
+                            </div>
+                        </div>
+                    </div>
 
 
-                        {% endfor %}
 
                 {% endfor %}
 
+
             </div>
+
+
+
             <div class="pagination">
-                <ul>
-                    <li class="next"><a href="#"><i class="fa fa-angle-left"></i><span>Next</span></a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li class="prev"><a href="#"><span>prev</span> <i class="fa fa-angle-right"></i></a></li>
-                </ul>
+                {% if list_epreuves.has_other_pages %}
+                    <ul>
+                        {% if list_epreuves.has_previous %}
+                            <li class="prev"><a href="?page={{ list_epreuves.previous_page_number }}"><i
+                                    class="fa fa-angle-left"></i><span>Prev</span></a></li>
+                        {% else %}
+                            <li class="disabled prev"><i class="fa fa-angle-left"></i><span>Prev</span></li>
+                        {% endif %}
+                        {% for i in list_epreuves.paginator.page_range %}
+                            {% if list_epreuves.number == i %}
+                                <li class="active"><a href="#">{{ i }}</a></li>
+                            {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+
+                        {% endfor %}
+                        {% if list_epreuves.has_next %}
+                            <li class="next"><a href="?page={{ list_epreuves.next_page_number }}"><span>Next</span><i
+                                    class="fa fa-angle-right"></i></a></li>
+                        {% else %}
+                            <li class="disabled next"><span>Next</span><i class="fa fa-angle-right"></i></li>
+                        {% endif %}
+                        {#                        <li><a href="#">2</a></li>#}
+                        {#                        <li><a href="#">3</a></li>#}
+                        {#                        <li><a href="#">4</a></li>#}
+                        {#                        <li class="prev"><a href="#"><span>prev</span> <i class="fa fa-angle-right"></i></a></li>#}
+                        {#                    {% for i in paginator.page_range %}#}
+                        {#                        <li><a href="?page={{ i }}" class="{% if selected == 'page' %}active{% endif %}">{{ i }}</a></li>#}
+                        {#                    {% endfor %}#}
+                    </ul>
+                {% endif %}
             </div>
+
+        {% endfor %}
         </div>
     </div>
 

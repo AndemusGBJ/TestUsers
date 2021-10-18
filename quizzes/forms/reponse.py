@@ -6,8 +6,8 @@ from quizzes.models.validationEpreuve import ValidationEpreuve
 
 
 class ReponseForm(ModelForm):
-    contenu = forms.CharField(label='Votre Réponse', widget=forms.TextInput(attrs={
-        'class': 'form-control'
+    contenu = forms.CharField(label='Votre Réponse', widget=forms.Textarea(attrs={
+        'class': 'form-control', 'id':'exampleFormControlTextarea1', 'rows':'3'
     }))
 
     class Meta:
