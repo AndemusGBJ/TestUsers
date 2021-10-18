@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'TestUsers.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'uquizzes.db',
+        'NAME': BASE_DIR / 'tfc.db',
     }
 }
 

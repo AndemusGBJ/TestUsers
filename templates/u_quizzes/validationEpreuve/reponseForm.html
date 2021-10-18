@@ -2,16 +2,16 @@
 
 {% block content %}
 
-    <section class="banner inner-page">
-        <div class="banner-img"><img
-                src="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/images/banner/quiz.jpg" alt="">
-        </div>
-        <div class="page-title">
-            <div class="container">
-                <h1>Epreuve</h1>
-            </div>
-        </div>
-    </section>
+    {#    <section class="banner inner-page">#}
+    {#        <div class="banner-img"><img#}
+    {#                src="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/images/banner/quiz.jpg" alt="">#}
+    {#        </div>#}
+    {#        <div class="page-title">#}
+    {#            <div class="container">#}
+    {#                <h1>Epreuve</h1>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </section>#}
     <section class="breadcrumb white-bg">
         <div class="container">
             <ul>
@@ -54,72 +54,86 @@
                     </div>
                 </div>
                 {% for question in list_questions %}
-                    <div class="col-sm-8 col-md-9">
-                        <div class="qustion-main">
-                            <div class="qustion-box">
-                                <div class="qustion">{{ question.contenu }}</div>
-                                <form action="" method="post">
-                                    {% csrf_token %}
-                                    {% if form.subject.errors %}
-                                        {% for error in form.subject.errors %}
-                                            <p class="text-danger">
-                                                <stron>{{ error }}</stron>
-                                            </p>
-                                        {% endfor %}
 
-                                    {% endif %}
+                    {% for epreuve in list_epreuves %}
 
-                                    <div class="ans">
-                                        <div class="mb-3">
+                        {% if question.idEpreuve == epreuve.titre %}
 
-                                            <label for="exampleFormControlTextarea1" class="form-label">Entrez votre
-                                                réponse ici</label>
+                            <div class="col-sm-8 col-md-9">
+                                <div class="qustion-main">
+                                    <div class="qustion-box">
+                                        <div class="qustion">{{ question.contenu }}</div>
+                                        <form action="" method="post">
+                                            {% csrf_token %}
+                                            {% if form.subject.errors %}
+                                                {% for error in form.subject.errors %}
+                                                    <p class="text-danger">
+                                                        <stron>{{ error }}</stron>
+                                                    </p>
+                                                {% endfor %}
 
-                                            {% for field in form %}
-                                                {{ field }}
+                                            {% endif %}
 
-                                            {% endfor %}
+                                            <div class="ans">
+                                                <div class="mb-3">
+
+                                                    <label for="exampleFormControlTextarea1" class="form-label">Entrez
+                                                        votre
+                                                        réponse ici</label>
+
+                                                    {% for field in form %}
+                                                        {{ field }}
+
+                                                    {% endfor %}
+
+                                                </div>
+
+                                            </div>
+                                            <div class="save-btn">
+                                                <button type="submit" class="btn2">Enregistre cette réponse</button>
+                                            </div>
+                                        </form>
+
+                                        <div class="btn-slide">
+                                            <a href="#" class="btn"><i class="fa fa-angle-left"></i></a>
+                                            <a href="#" class="btn"><i class="fa fa-angle-right"></i></a>
+                                        </div>
+                                        <div class="btn-slide">
+
+                                            {% if list_questions.has_previous %}
+                                                <a href="{% url 'quizzes:repondre' %}?page={{ list_questions.previous_page_number }}"
+                                                   class="btn">
+                                                    <i class="fa fa-angle-left"></i>
+
+                                                </a>
+                                            {% endif %}
+
+                                            <span>{{ list_questions.number }} of {{ page_object.count }}</span>
+                                            {% if list_questions.has_next %}
+
+
+                                                <a href="{% url 'quizzes:repondre' %}?page={{ list_questions.next_page_number }}"
+                                                   class="btn">
+                                                    <i class="fa fa-angle-right"></i>
+
+                                                </a>
+
+                                            {% endif %}
+
 
                                         </div>
-
                                     </div>
-                                    <div class="save-btn">
-                                        <button type="submit" class="btn2">Enregistre cette réponse</button>
+                                    <div class="submit-quiz">
+                                        <a href="#" class="btn">Envoyez</a>
                                     </div>
-                                </form>
-
-                                <div class="btn-slide">
-                                    <a href="#" class="btn"><i class="fa fa-angle-left"></i></a>
-                                    <a href="#" class="btn"><i class="fa fa-angle-right"></i></a>
                                 </div>
-<div class="btn-slide">
-
-                                {% if list_questions.has_previous %}
-                                        <a href="{% url 'quizzes:repondre' %}?page={{ list_questions.previous_page_number }}" class="btn">
-                                            <i class="fa fa-angle-left"></i>
-
-                                        </a>
-                                {% endif %}
-
-                            <span>{{ list_questions.number }} of {{ page_object }}</span>
-                            {% if list_questions.has_next %}
-
-
-                                    <a href="{% url 'quizzes:repondre' %}?page={{ list_questions.next_page_number }}" class="btn">
-                                        <i class="fa fa-angle-right"></i>
-
-                                    </a>
-
-                            {% endif %}
-
-
-                        </div>
                             </div>
-                            <div class="submit-quiz">
-                                <a href="#" class="btn">Envoyez</a>
-                            </div>
-                        </div>
-                    </div>
+                        {% endif %}
+
+                    {% endfor %}
+
+
+
                 {% endfor %}
 
             </div>

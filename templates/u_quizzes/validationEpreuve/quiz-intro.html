@@ -1,14 +1,14 @@
 {% extends 'base_customer.html' %}
-
+{% block title %}Commencer votre épreuve{% endblock %}
 {% block content %}
-        <section class="banner inner-page">
-        	<div class="banner-img"><img src="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/images/banner/quiz.jpg" alt=""></div>
-            <div class="page-title">	
-	            <div class="container">
-                    <h1>Quiz Intro</h1>
-                </div>
-            </div>
-        </section>
+{#        <section class="banner inner-page">#}
+{#        	<div class="banner-img"><img src="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/images/banner/quiz.jpg" alt=""></div>#}
+{#            <div class="page-title">	#}
+{#	            <div class="container">#}
+{#                    <h1>Commencer votre épreuve</h1>#}
+{#                </div>#}
+{#            </div>#}
+{#        </section>#}
         <section class="breadcrumb white-bg">
         	<div class="container">
             	<ul>
@@ -20,7 +20,7 @@
         <section class="quiz-view">
         	<div class="container">
                 <div class="quiz-title">
-                    <h2>TD Algorithmique</h2>
+                    <h2>{{ epreuve.titre }}</h2>
                     <p>Contrôl d'acquis théorique</p>
                 </div>
                 <div class="row">
@@ -54,10 +54,7 @@
                     <div class="col-sm-8 col-md-9">
                     	<div class="quiz-intro">
                         	<h3>Introduction</h3>
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a
-                                page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                                normal distribution of letters, as opposed to using 'Content here, content here', making it
-                                look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their </p>
+                            <p>{{ epreuve.description }}</p>
                             
                             <div class="start-btn">
                             	<a href="{% url 'quizzes:questions' %}" class="btn">Commencer</a>

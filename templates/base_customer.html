@@ -11,7 +11,7 @@
     <!-- Mobile Specific Metas -->
 
     <!-- Title -->
-    <title>U-Quizzes</title>
+    <title>{% block title %} {% endblock %}</title>
 
     <!-- favicon icon -->
     <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}">
@@ -36,6 +36,14 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <style>
+        h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: 'poetsenoneregular';
+    font-weight: normal;
+    }
+    </style>
 
 </head>
 
@@ -81,10 +89,10 @@
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <div class="cart-box">
-                        <a href="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/cart.html"><i
-                                class="fa fa-shopping-basket"></i></a>
-                    </div>
+{#                    <div class="cart-box">#}
+{#                        <a href="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/cart.html"><i#}
+{#                                class="fa fa-shopping-basket"></i></a>#}
+{#                    </div>#}
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li class=" active sub-menu">

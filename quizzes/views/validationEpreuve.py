@@ -83,6 +83,7 @@ def new_response(request):
 
     select = "questionnaire"
     list_questions = Questionaire.objects.all()
+    list_epreuves = Epreuve.objects.all()
 
     # Pagination : 1 éléments par page
     paginator = Paginator(list_questions, 1)

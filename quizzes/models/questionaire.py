@@ -8,4 +8,7 @@ class Questionaire(models.Model):
     contenu = models.TextField()
     ponderation = models.FloatField()
     corrige = models.TextField()
-    idEpreuve = models.ForeignKey(Epreuve, on_delete=models.CASCADE)
+    idEpreuve = models.ForeignKey(Epreuve, on_delete=models.CASCADE, verbose_name='Epreuve')
+
+    def __str__(self):
+        return self.contenu

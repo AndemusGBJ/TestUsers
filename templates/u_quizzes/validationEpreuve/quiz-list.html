@@ -1,17 +1,17 @@
 {% extends 'base_customer.html' %}
-
+{% block title %} Mes épreuves {% endblock %}
 {% block content %}
 
-    <section class="banner inner-page">
-        <div class="banner-img"><img
-                src="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/images/banner/event.jpg" alt="">
-        </div>
-        <div class="page-title">
-            <div class="container">
-                <h1>Event</h1>
-            </div>
-        </div>
-    </section>
+{#    <section class="banner inner-page">#}
+{#        <div class="banner-img"><img#}
+{#                src="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/images/banner/event.jpg" alt="">#}
+{#        </div>#}
+{#        <div class="page-title">#}
+{#            <div class="container">#}
+{#                <h1>MES EPREUVES</h1>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
     <section class="breadcrumb ">
         <div class="container">
             <ul>
@@ -21,17 +21,20 @@
         </div>
     </section>
     <div class="event-page">
-        {% for validation in list_validations %}
+
             <div class="container">
             <div class="section-title">
                 <h2>Mes péreuves</h2>
 
             </div>
             <p>{{ user }}</p>
+
             <div class="row">
 
-
+                {% for validation in list_validations %}
                 {% for epreuve in list_epreuves %}
+                    {% if validation.user == user and validation.epreuve == epreuve %}
+
 
                     <div class="col-sm-6 col-md-4">
                         <div class="event-box" style="padding-top: 20px;">
@@ -56,12 +59,9 @@
                             </div>
                         </div>
                     </div>
-
-
-
+                    {% endif %}
                 {% endfor %}
-
-
+            {% endfor %}
             </div>
 
 
@@ -73,7 +73,7 @@
                             <li class="prev"><a href="?page={{ list_epreuves.previous_page_number }}"><i
                                     class="fa fa-angle-left"></i><span>Prev</span></a></li>
                         {% else %}
-                            <li class="disabled prev"><i class="fa fa-angle-left"></i><span>Prev</span></li>
+                            <li class="prev"><i class="fa fa-angle-left"></i><span>Prev</span></li>
                         {% endif %}
                         {% for i in list_epreuves.paginator.page_range %}
                             {% if list_epreuves.number == i %}
@@ -87,20 +87,15 @@
                             <li class="next"><a href="?page={{ list_epreuves.next_page_number }}"><span>Next</span><i
                                     class="fa fa-angle-right"></i></a></li>
                         {% else %}
-                            <li class="disabled next"><span>Next</span><i class="fa fa-angle-right"></i></li>
+                            <li class="next"><span>Next</span><i class="fa fa-angle-right"></i></li>
                         {% endif %}
-                        {#                        <li><a href="#">2</a></li>#}
-                        {#                        <li><a href="#">3</a></li>#}
-                        {#                        <li><a href="#">4</a></li>#}
-                        {#                        <li class="prev"><a href="#"><span>prev</span> <i class="fa fa-angle-right"></i></a></li>#}
-                        {#                    {% for i in paginator.page_range %}#}
-                        {#                        <li><a href="?page={{ i }}" class="{% if selected == 'page' %}active{% endif %}">{{ i }}</a></li>#}
-                        {#                    {% endfor %}#}
+
                     </ul>
                 {% endif %}
+
             </div>
 
-        {% endfor %}
+
         </div>
     </div>
 

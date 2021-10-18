@@ -22,10 +22,10 @@ class EpreuveAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
 @admin.register(Questionaire)
 class QuestionaireAdmin(ImportExportModelAdmin):
-    pass
+    list_display = ('contenu', 'corrige', 'ponderation', 'idEpreuve')
 @admin.register(Reponse)
 class ReponseAdmin(ImportExportModelAdmin):
-    pass
+    list_display = ('contenu', 'pointsObtenus', 'idQuestion')
 
 
 @admin.register(ValidationEpreuve)
