@@ -29,7 +29,7 @@
                                 <th>Statut</th>
                     
                             </tr>
-{% for question in list_questions %}
+{% for question in questions %}
 <tr>
                                 <td><a href="{% url 'quizzes:reponse' question.id %}">{{ question.contenu }}</a></td>
                                 <td>{{ question.ponderation }}</td>
