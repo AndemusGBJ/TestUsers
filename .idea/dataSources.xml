@@ -12,5 +12,22 @@
         </library>
       </libraries>
     </data-source>
+    <data-source source="LOCAL" name="tfc" uuid="450e37b2-3534-46d3-9e73-af330299efe6">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Andemus\PycharmProjects\TestUsers\tfc.db</jdbc-url>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.34.0/sqlite-jdbc-3.34.0.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="tfc1" uuid="8b2d87c5-0352-4285-9faf-f69d5c3e2d67">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/tfc1</jdbc-url>
+    </data-source>
   </component>
 </project>

@@ -16,39 +16,40 @@ from quizzes.models.validationEpreuve import ValidationEpreuve
 def list_questions(request):
     select = "questionnaire"
     list_questions=Questionaire.objects.all()
+    # epreuve = Epreuve.objects.get(id=id)
 
     #Pagination : 1 éléments par page
-    paginator = Paginator(list_questions, 1)
+    # paginator = Paginator(list_questions, 1)
+    # try:
+    #     page = request.GET.get("page")
+    #     if not page:
+    #         page = 1
+    #     list_questions = paginator.page(page)
+    #
+    # except EmptyPage:
+    #     #si on dépasse la limite des pages on prends la dernière
+    #     list_questions = paginator.page(paginator.num_pages())
+
+    return render(request, "u_quizzes/validationEpreuve/question-list.html", locals())
+
+@login_required()
+def list_epreuves(request):
+    select = "epreuve"
+    list_epreuves = Epreuve.objects.all()
+
+    # Pagination : 1 éléments par page
+    paginator = Paginator(list_epreuves, 5)
     try:
         page = request.GET.get("page")
         if not page:
             page = 1
-        list_questions = paginator.page(page)
+        list_epreuves = paginator.page(page)
 
     except EmptyPage:
-        #si on dépasse la limite des pages on prends la dernière
-        list_questions = paginator.page(paginator.num_pages())
+        # si on dépasse la limite des pages on prends la dernière
+        list_epreuves = paginator.page(paginator.num_pages())
 
-    return render(request, "u_quizzes/validationEpreuve/reponseForm.html", locals())
-
-# @login_required()
-# def list_epreuves(request):
-#     select = "epreuve"
-#     list_epreuves = Epreuve.objects.all()
-#
-#     # Pagination : 1 éléments par page
-#     paginator = Paginator(list_epreuves, 5)
-#     try:
-#         page = request.GET.get("page")
-#         if not page:
-#             page = 1
-#         list_epreuves = paginator.page(page)
-#
-#     except EmptyPage:
-#         # si on dépasse la limite des pages on prends la dernière
-#         list_epreuves = paginator.page(paginator.num_pages())
-#
-#     return render(request, "u_quizzes/validationEpreuve/quiz-list.html", locals())
+    return render(request, "u_quizzes/validationEpreuve/quiz-list.html", locals())
 
 @login_required()
 def list_validations(request):
@@ -69,6 +70,7 @@ def list_validations(request):
 
     return render(request, "u_quizzes/validationEpreuve/quiz-list.html", locals())
 
+@login_required()
 class CreateReponse(CreateView, LoginRequiredMixin):
     list_questions = Questionaire.objects.all()
     model = Reponse
@@ -79,34 +81,37 @@ class CreateReponse(CreateView, LoginRequiredMixin):
         return reverse_lazy("quizzes:enregistrer", kwargs={"pk": self.object.id})
 
 @login_required()
-def new_response(request):
+def new_response(request, id):
 
     select = "questionnaire"
-    list_questions = Questionaire.objects.all()
+    question = Questionaire.objects.get(id=id)
     list_epreuves = Epreuve.objects.all()
 
     # Pagination : 1 éléments par page
-    paginator = Paginator(list_questions, 1)
-    try:
-        page = request.GET.get("page")
-        if not page:
-            page = 1
-        list_questions = paginator.page(page)
-
-    except EmptyPage:
-        # si on dépasse la limite des pages on prends la dernière
-        list_questions = paginator.page(paginator.num_pages())
+    # paginator = Paginator(question, 1)
+    # try:
+    #     page = request.GET.get("page")
+    #     if not page:
+    #         page = 1
+    #     question = paginator.page(page)
+    #
+    # except EmptyPage:
+    #     # si on dépasse la limite des pages on prends la dernière
+    #     question = paginator.page(paginator.num_pages())
 
     if request.method =='POST':
         form = ReponseForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            reponse = form.save(False)
+            reponse.user_id = request.user
+            reponse.idQuestion = question.id
+            reponse.save()
             return redirect('quizzes:repondre')
 
     else:
         form = ReponseForm()
 
-    context = {
-        'form':form, 'list_questions':list_questions,
-    }
+    # context = {
+    #     'form':form, 'list_questions':list_questions,
+    # }
     return render(request,'u_quizzes/validationEpreuve/reponseForm.html', locals())

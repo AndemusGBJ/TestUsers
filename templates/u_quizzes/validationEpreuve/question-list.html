@@ -1,0 +1,133 @@
+{% extends 'base_customer.html' %}
+
+{% block content %}
+
+{#        <section class="banner inner-page">#}
+{#        	<div class="banner-img"><img src="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/images/banner/cart.jpg" alt=""></div>#}
+{#            <div class="page-title">	#}
+{#	            <div class="container">#}
+{#                    <h1>Tableau de bord</h1>#}
+{#                </div>#}
+{#            </div>#}
+{#        </section>#}
+        <section class="breadcrumb ">
+        	<div class="container">
+            	<ul>
+                	<li><a href="#">Accueil</a></li>
+                    <li><a href="#">Mes Résultats</a></li>
+                </ul>
+            </div>
+        </section>
+        <section class="cart-page">
+        	<div class="container">
+            	<div class="table-view">
+                    <div class="cart-table">
+                        <table>
+                            <tr>
+                                <th>Question</th>
+                                <th>Pondération</th>
+                                <th>Statut</th>
+                    
+                            </tr>
+{% for question in list_questions %}
+<tr>
+                                <td><a href="{% url 'quizzes:reponse' question.id %}">{{ question.contenu }}</a></td>
+                                <td>{{ question.ponderation }}</td>
+                                <td><span class="badge bg-success" style=" background-color:green">{{ question.id }}</span></td>
+                            </tr>
+{% endfor %}
+                        </table>
+                    </div>
+
+                </div>
+                <div class="cart-row">
+                	<div class="coupon-code">
+                    	<input type="text" placeholder="Coupon code">
+                        <input type="submit" value="APPLY" class="btn">
+                    </div>
+                    <div class="check-outBtn">
+                    	<a href="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/check-out.html" class="btn">Proceed to Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="our-course">
+        	<div class="container">
+            	<div class="section-title">
+                	<h2>YOU MAY BE INTERESTED IN</h2>
+                </div>
+            	<div class="row">
+                	<div class="col-md-4 col-sm-6">
+                    	<div class="course-box">
+                        	<div class="img">
+                            	<img src="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/images/courses/courses-img1.jpg" alt="">
+                                <div class="course-info">
+                                	<div class="date"><i class="fa fa-calendar"></i>16-09-2016</div>
+                                    <div class="date"><i class="fa fa-clock-o"></i>2 Days </div>
+                                    <div class="favorite"><a href="#"><i class="fa fa-heart-o"></i></a></div>
+                                </div>
+                                <div class="price">$100</div>
+                           	</div>
+                            <div class="course-name">Management<span><em>By </em>Sarah Johnson</span></div>
+                            <div class="comment-row">
+                            	<div class="rating">
+                                    <div class="fill" style="width:45%"></div>
+                                </div>
+                                <div class="box"><i class="fa fa-users"></i>35 Student</div>
+                                <div class="enroll-btn">	
+                                	<a href="#" class="btn">Enroll</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                    	<div class="course-box">
+                        	<div class="img">
+                            	<img src="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/images/courses/courses-img2.jpg" alt="">
+                                <div class="course-info">
+                                	<div class="date"><i class="fa fa-calendar"></i>17-09-2016</div>
+                                    <div class="date"><i class="fa fa-clock-o"></i>1 Days </div>
+                                    <div class="favorite"><a href="#"><i class="fa fa-heart"></i></a></div>
+                                </div>
+                                <div class="price free">free</div>
+                           	</div>
+                            <div class="course-name">Banking<span><em>By </em>Michael Windzor</span></div>
+                            <div class="comment-row">
+                            	<div class="rating">
+                                    <div class="fill" style="width:45%"></div>
+                                </div>
+                                <div class="box"><i class="fa fa-users"></i>30 Student</div>
+                                <div class="enroll-btn">	
+                                	<a href="#" class="btn">Enroll</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                    	<div class="course-box">
+                        	<div class="img">
+                            	<img src="http://design.dev.drcsystems.ooo:8084/themeforest/academy/html/images/courses/courses-img3.jpg" alt="">
+                                <div class="course-info">
+                                	<div class="date"><i class="fa fa-calendar"></i>17-09-2016</div>
+                                    <div class="date"><i class="fa fa-clock-o"></i>1 Days </div>
+                                    <div class="favorite"><a href="#"><i class="fa fa-heart-o"></i></a></div>
+                                </div>
+                                <div class="price">$276</div>
+                           	</div>
+                            <div class="course-name">Government Recruitment<span><em>By </em>Peter Parker</span></div>
+                            <div class="comment-row">
+                            	<div class="rating">
+                                    <div class="fill" style="width:45%"></div>
+                                </div>
+                                <div class="box"><i class="fa fa-users"></i>30 Student</div>
+                                <div class="enroll-btn">	
+                                	<a href="#" class="btn">Enroll</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {% endblock %}

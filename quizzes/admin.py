@@ -7,6 +7,13 @@ from quizzes.models.questionaire import Questionaire
 from quizzes.models.reponses import Reponse
 from quizzes.models.validationEpreuve import ValidationEpreuve
 
+class QuestionaireInlineAdmin(admin.TabularInline):
+    model = Questionaire
+    extra = 0
+
+
+
+
 
 @admin.register(Etudiant)
 class EtudiantAdmin(ImportExportModelAdmin, admin.ModelAdmin):
@@ -16,13 +23,12 @@ class EtudiantAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
 @admin.register(Epreuve)
 class EpreuveAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    inlines = [QuestionaireInlineAdmin]
     list_display = ('titre', 'description', 'ponderation', 'dateCreation', 'duree')
     list_per_page = 10
 
 
-@admin.register(Questionaire)
-class QuestionaireAdmin(ImportExportModelAdmin):
-    list_display = ('contenu', 'corrige', 'ponderation', 'idEpreuve')
+
 @admin.register(Reponse)
 class ReponseAdmin(ImportExportModelAdmin):
     list_display = ('contenu', 'pointsObtenus', 'idQuestion')

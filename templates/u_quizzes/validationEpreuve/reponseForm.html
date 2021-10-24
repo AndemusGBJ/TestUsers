@@ -28,6 +28,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-4 col-md-3">
+
                     <div id="countdown"></div>
                     <div class="qustion-list">
                         <div class="qustion-slide fill">
@@ -54,10 +55,6 @@
                     </div>
                 </div>
                 {% for question in list_questions %}
-
-                    {% for epreuve in list_epreuves %}
-
-                        {% if question.idEpreuve == epreuve.titre %}
 
                             <div class="col-sm-8 col-md-9">
                                 <div class="qustion-main">
@@ -94,10 +91,10 @@
                                             </div>
                                         </form>
 
-                                        <div class="btn-slide">
-                                            <a href="#" class="btn"><i class="fa fa-angle-left"></i></a>
-                                            <a href="#" class="btn"><i class="fa fa-angle-right"></i></a>
-                                        </div>
+{#                                        <div class="btn-slide">#}
+{#                                            <a href="#" class="btn"><i class="fa fa-angle-left"></i></a>#}
+{#                                            <a href="#" class="btn"><i class="fa fa-angle-right"></i></a>#}
+{#                                        </div>#}
                                         <div class="btn-slide">
 
                                             {% if list_questions.has_previous %}
@@ -128,9 +125,7 @@
                                     </div>
                                 </div>
                             </div>
-                        {% endif %}
 
-                    {% endfor %}
 
 
 

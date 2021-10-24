@@ -107,4 +107,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         # Simplest possible answer: Yes, always
         return True
 
+    class Meta:
+        verbose_name="Etudiant"
+        verbose_name_plural = "Etudiants"
+
 
