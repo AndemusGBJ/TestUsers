@@ -12,4 +12,4 @@ class ReponseForm(ModelForm):
 
     class Meta:
         model=Reponse
-        fields  = ["contenu","pointsObtenus","idQuestion","user"]
+        fields  = ["contenu"]

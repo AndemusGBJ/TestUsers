@@ -23,7 +23,7 @@
     <section class="quiz-view">
         <div class="container">
             <div class="quiz-title">
-                <h2>TD Algorithmique</h2>
+                <h2>Algo</h2>
                 <p>Contrôl d'acquis théorique</p>
             </div>
             <div class="row">
@@ -54,7 +54,7 @@
 
                     </div>
                 </div>
-                {% for question in list_questions %}
+
 
                             <div class="col-sm-8 col-md-9">
                                 <div class="qustion-main">
@@ -91,34 +91,31 @@
                                             </div>
                                         </form>
 
+{#pagination#}
 {#                                        <div class="btn-slide">#}
-{#                                            <a href="#" class="btn"><i class="fa fa-angle-left"></i></a>#}
-{#                                            <a href="#" class="btn"><i class="fa fa-angle-right"></i></a>#}
+{##}
+{#                                            {% if list_questions.has_previous %}#}
+{#                                                <a href="{% url 'quizzes:repondre' %}?page={{ list_questions.previous_page_number }}"#}
+{#                                                   class="btn">#}
+{#                                                    <i class="fa fa-angle-left"></i>#}
+{##}
+{#                                                </a>#}
+{#                                            {% endif %}#}
+{##}
+{#                                            <span>{{ list_questions.number }} of {{ page_object.count }}</span>#}
+{#                                            {% if list_questions.has_next %}#}
+{##}
+{##}
+{#                                                <a href="{% url 'quizzes:repondre' %}?page={{ list_questions.next_page_number }}"#}
+{#                                                   class="btn">#}
+{#                                                    <i class="fa fa-angle-right"></i>#}
+{##}
+{#                                                </a>#}
+{##}
+{#                                            {% endif %}#}
+{##}
+{##}
 {#                                        </div>#}
-                                        <div class="btn-slide">
-
-                                            {% if list_questions.has_previous %}
-                                                <a href="{% url 'quizzes:repondre' %}?page={{ list_questions.previous_page_number }}"
-                                                   class="btn">
-                                                    <i class="fa fa-angle-left"></i>
-
-                                                </a>
-                                            {% endif %}
-
-                                            <span>{{ list_questions.number }} of {{ page_object.count }}</span>
-                                            {% if list_questions.has_next %}
-
-
-                                                <a href="{% url 'quizzes:repondre' %}?page={{ list_questions.next_page_number }}"
-                                                   class="btn">
-                                                    <i class="fa fa-angle-right"></i>
-
-                                                </a>
-
-                                            {% endif %}
-
-
-                                        </div>
                                     </div>
                                     <div class="submit-quiz">
                                         <a href="#" class="btn">Envoyez</a>
@@ -129,7 +126,7 @@
 
 
 
-                {% endfor %}
+
 
             </div>
         </div>

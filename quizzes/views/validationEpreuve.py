@@ -103,10 +103,10 @@ def new_response(request, id):
         form = ReponseForm(request.POST, request.FILES)
         if form.is_valid():
             reponse = form.save(False)
-            reponse.user_id = request.user
-            reponse.idQuestion = question.id
+            reponse.user_id = request.user.id
+            reponse.idQuestion = question
             reponse.save()
-            return redirect('quizzes:repondre')
+            return redirect('quizzes:questions')
 
     else:
         form = ReponseForm()

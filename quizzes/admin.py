@@ -32,6 +32,7 @@ class EpreuveAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 @admin.register(Reponse)
 class ReponseAdmin(ImportExportModelAdmin):
     list_display = ('contenu', 'pointsObtenus', 'idQuestion')
+    readonly_fields = ('contenu', 'pointsObtenus', 'idQuestion')
 
 
 @admin.register(ValidationEpreuve)
