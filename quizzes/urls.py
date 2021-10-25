@@ -35,15 +35,16 @@ urlpatterns = [
     path('etudiants/<int:pk>/',
          login_required(DetailView.as_view(model=Etudiant, template_name="u_quizzes/etudiants/details-etudiant.html")), name='details'),
 
-    path('epreuve/<int:pk>/questions/', validationEpreuve.list_questions, name="questions"),
+    path('mes_epreuves/<slug:slug>/questions/', validationEpreuve.list_questions, name="questions"),
+    path('mes_epreuves/<slug:slug>/questions/resultats', validationEpreuve.resultats, name="resultats"),
     #path('reponses/enregistrer/', validationEpreuve.CreateReponse.as_view(), name="enregistrer"),
     #path('question/repondre/', validationEpreuve.new_response, name="repondre"),
     #path('epreuves/', validationEpreuve.list_epreuves, name="epreuves"),
     path('mes_epreuves/', validationEpreuve.list_validations, name="mes_epreuves"),
-    path('questions/<int:id>', validationEpreuve.new_response, name="reponse"),
+    path('mes_epreuves/<slug:slug>/questions/<int:id>', validationEpreuve.new_response, name="reponse"),
 
 
-    path('epreuve/<int:pk>/',
+    path('mes_epreuves/<slug:slug>/',
              login_required(DetailView.as_view(model=Epreuve, template_name="u_quizzes/validationEpreuve/quiz-intro.html")), name='intro'),
 
 

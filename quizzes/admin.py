@@ -24,8 +24,10 @@ class EtudiantAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 @admin.register(Epreuve)
 class EpreuveAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     inlines = [QuestionaireInlineAdmin]
-    list_display = ('titre', 'description', 'ponderation', 'dateCreation', 'duree')
+    list_display = ('titre', 'description', 'ponderation', 'date', 'duree')
     list_per_page = 10
+
+    prepopulated_fields = {'slug': ('titre',)}
 
 
 

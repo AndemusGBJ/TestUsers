@@ -56,15 +56,26 @@
                         	<h3>Résultats</h3>
                             <div class="result-info">
                             	<div class="info-slide">
-                                	<p>Votre note<span>7.2</span></p>
+                                	<p>Votre note<span>{{ cote }}</span></p>
                                 </div>
                                 <div class="info-slide">
-                                	<p>Max<span>10</span></p>
+                                	<p>Max<span>{{ epreuve.ponderation }}</span></p>
                                 </div>
                                 <div class="info-slide">
-                                	<p>Statut<span style="color: darkgreen;">Réussite</span></p>
+                                    {% if status %}
+                                        <p>Statut<span style="color: darkgreen;">Réussite</span></p>
+                                    {% else %}
+                                        <p>Statut<span style="color: red;">Echec</span></p>
+                                    {% endif %}
+
                                 </div>
                             </div>
+                        {% for f in questions %}
+
+                            <p>{{ f.contenu }}</p>
+
+                        {% endfor %}
+
                             <div class="leaderboard">
                             	<h3>Récapitulation</h3>
                                 <div class="qustion-review">

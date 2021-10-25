@@ -55,7 +55,7 @@
                             <p>Epreuve pk : {{ epreuve.pk }} </p>
                             <p>Epreuve id : {{ epreuve.id }} </p>
                             <div class="more-btn">
-                                <a href="{% url 'quizzes:intro' epreuve.pk %}" class="btn">Afficher</a>
+                                <a href="{% url 'quizzes:intro' epreuve.slug %}" class="btn">Afficher</a>
                             </div>
                         </div>
                     </div>

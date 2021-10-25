@@ -29,5 +29,17 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/tfc1</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="tfcquiz" uuid="2b98042b-854c-4768-a204-937510bff071">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:identifier.sqlite</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="tfcquiz [2]" uuid="c1236e59-736b-44f8-8c9f-8691b59bac24">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/tfcquiz</jdbc-url>
+    </data-source>
   </component>
 </project>
