@@ -148,6 +148,7 @@ def resultats(request, slug):
     cote = 0
     status = False
     questions = []
+    reponses = []
     for rep in list_reponses:
         print('titre epreuve:',epreuve.titre)
         print(request.user)
@@ -157,6 +158,7 @@ def resultats(request, slug):
                 cote += rep.pointsObtenus
                 print("cote:", cote)
                 questions.append(q)
+                reponses.append(rep)
 
     if cote > (epreuve.ponderation/2):
         status = True
