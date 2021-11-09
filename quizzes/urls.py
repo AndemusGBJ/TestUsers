@@ -41,7 +41,8 @@ urlpatterns = [
     #path('question/repondre/', validationEpreuve.new_response, name="repondre"),
     #path('epreuves/', validationEpreuve.list_epreuves, name="epreuves"),
     path('mes_epreuves/', validationEpreuve.list_validations, name="mes_epreuves"),
-    path('mes_epreuves/<slug:slug>/questions/<int:id>', validationEpreuve.new_response, name="reponse"),
+    path('mes_epreuves/<slug:slug>/questions/<int:pk>', validationEpreuve.new_response, name="reponse"),
+    #path('mes_epreuves/<slug:slug>/questions/<int:id>/reponse/<int:id>', validationEpreuve.update_response, name="modifier"),
 
 
     path('mes_epreuves/<slug:slug>/',

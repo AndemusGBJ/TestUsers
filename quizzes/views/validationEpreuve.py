@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
 from quizzes.forms.reponse import ReponseForm
 from quizzes.models.epreuve import Epreuve
@@ -86,7 +86,7 @@ def list_validations(request):
 
     return render(request, "u_quizzes/validationEpreuve/quiz-list.html", locals())
 
-@login_required()
+
 class CreateReponse(CreateView, LoginRequiredMixin):
     list_questions = Questionaire.objects.all()
     model = Reponse
@@ -103,25 +103,9 @@ def new_response(request, id, slug):
     question = Questionaire.objects.get(id=id)
     epreuve = get_object_or_404(Epreuve, slug=slug)
 
-    # Pagination : 1 éléments par page
-    # paginator = Paginator(question, 1)
-    # try:
-    #     page = request.GET.get("page")
-    #     if not page:
-    #         page = 1
-    #     question = paginator.page(page)
-    #
-    # except EmptyPage:
-    #     # si on dépasse la limite des pages on prends la dernière
-    #     question = paginator.page(paginator.num_pages())
-    #model = SentenceTransformer('sentence-transformers/paraphrase-xlm-r-multilingual-v1')
-    #corrige = question.corrige
-
     if request.method =='POST':
         form = ReponseForm(request.POST, request.FILES)
-        #r = form.contenu
-       # sentences = [corrige,r]
-        #embeddings = model.encode(corrige)
+
         if form.is_valid():
             reponse = form.save(False)
             reponse.user_id = request.user.id
@@ -134,10 +118,33 @@ def new_response(request, id, slug):
     else:
         form = ReponseForm()
 
-    # context = {
-    #     'form':form, 'list_questions':list_questions,
-    # }
     return render(request,'u_quizzes/validationEpreuve/reponseForm.html', locals())
+
+
+@login_required()
+def update_response(request, id, slug):
+    select = "questionnaire"
+    question = Questionaire.objects.get(id=id)
+    epreuve = get_object_or_404(Epreuve, slug=slug)
+    reponse = get_object_or_404(Reponse)
+
+    if request.method == 'POST':
+        form = ReponseForm(request.POST, instance=reponse)
+
+        if form.is_valid():
+            reponse = form.save(False)
+            reponse.user_id = request.user.id
+            reponse.idQuestion = question
+            reponse.pointsObtenus = random.randint(5, 20)
+            # reponse.pointsObtenus = cosine_similarity([embeddings[0]], [embeddings[1]])*question.ponderation
+            reponse.save()
+            return redirect('quizzes:questions', epreuve.slug)
+
+    else:
+        form = ReponseForm(instance=reponse)
+
+    return render(request, 'u_quizzes/validationEpreuve/UpdateResponseForm.html', locals())
+
 
 @login_required()
 def resultats(request, slug):
